@@ -1,1 +1,6 @@
 note note note~
+
+1、测试报告
+testng自带测试报告、reportNG测试报告（比testng自带的更加美观一点）、extentReport
+
+2、extentReport的配置和使用

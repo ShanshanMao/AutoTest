@@ -1,1 +1,70 @@
 test test this is a test txt
+
+ //最基本的注解，用来把方法标记为测试的一部分
+1   @Test
+    public void testCase1(){
+        System.out.println("This is test case 1");
+
+    }
+2 注解BeforeMethod和AfterMethod
+    每一个test的内容都会运行一次before和after的方法。
+
+3 注解BeforeClass和AfterClass
+    BeforeClass是在类运行之前运行的方法
+    AfterClass是在类运行之后运行的方法
+  在类运行之前是否需要注入一些对象、静态的东西或者变量赋值时可以应用。
+
+4 注解BeforeSuite和AfterSuite
+    这个suite把class包裹起来了，所以这个suite可以包含多个class，这个类就是属于某个测试套件下面的。
+
+5 testNG套件测试
+
+6 testNG忽略测试（本次测试执行之前不想执行的测试）
+    @Test(enabled = false) 将不执行该条测试。
+
+7 组（group）测试中的方法分组测试（testNG组测试）
+    @Test(groups = "server")
+    @BeforeGroups("server")
+        public void beforeGroupsOnServer(){
+            System.out.println("这是服务端组运行之前运行的方法！");
+        }
+    @AfterGroups("server")
+        public void AfterGroupsOnServer(){
+            System.out.println("这是服务端组运行之后运行的方法！");
+        }
+
+8 组测试中的类分组测试
+    groupsOnClass1\2\3 以及 groupsOnClass.xml 组成
+
+9 testNG异常测试
+    expectedException 这个类
+     @Test(expectedExceptions = RuntimeException.class)
+
+10 testNG依赖测试（就是本次测试的方法依赖其他方法）
+    @Test
+        public void test1(){
+            System.out.println("test1 run !");
+        }
+    @Test(dependsOnMethods = {"test1"})
+
+11 参数化测试-xml文件参数化（如何通过外部和内部来传递参数）
+    @Test
+    @Parameters({"name","age"}) //这里还差一个配置项，配置项仍然在resources里面添加
+        public void paramTest1(String name,int age){
+            System.out.println("name = "+name + ","+"age="+age);
+        }
+
+12 参数化测试-DataProvider参数化
+
+13 多线程测试-注解方式实现（多个线程执行一个方法）
+    MultiThreadOnAnnotion
+    @Test(invocationCount = 10) // 直接在test里面加一个invocationCount属性就可以了
+
+14 多线程测试-xml文件实现
+
+15 TestNG超时测试（多长时间没有响应）
+   添加timeout属性
+    @Test(timeOut = 3000)//单位为毫秒值
+    public void testSuccess()throws InterruptedException{
+        Thread.sleep(2000);
+    }
